@@ -18,7 +18,7 @@ driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 url="https://www.betsafe.co.ke/"
 driver.get(url)
 time.sleep(10)
-# driver.maximize_window()
+driver.maximize_window()
 # create the soup for the whole page
 raw_betsafe=driver.page_source
 mod_betsafe=raw_betsafe.encode("utf-8").strip()
@@ -41,7 +41,7 @@ def main():
             odds_Arr.append(odd.text)
             # print(odd.text)
             # print("The first six entries")
-        bet_Arr.extend(odds_Arr[0:6])
+        bet_Arr.extend(odds_Arr[0:5])
         # find all matches
         # all home matches
         homes=cat.find_all("div",class_="plr_1 ng-binding")
@@ -58,12 +58,14 @@ def main():
     for i in range(len(home_Arr)):
         mechi=home_Arr[i]+" vs "+away_Arr[i]
         matches_Arr.append(mechi)
-    print(matches_Arr)
-    # print(bet_Arr)
+    # print(matches_Arr)
+    print(bet_Arr)
     # start the dataframe
     realD=np.array_split(bet_Arr,len(matches_Arr))
+    
     # print(realD)
     df=pd.DataFrame(data=realD,index=[matches_Arr],columns=['1','X','2','1or2','Xor2','1orX'])
     print(df)
+    df.to_csv("betsafe.csv")
     
 main()
