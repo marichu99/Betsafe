@@ -67,5 +67,6 @@ def main():
     df=pd.DataFrame(data=realD,index=[matches_Arr],columns=['1','X','2','1or2','Xor2','1orX'])
     print(df)
     df.to_csv("betsafe.csv")
+    return df
     
 main()
