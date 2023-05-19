@@ -54,7 +54,7 @@ def main():
 
     # iterator for home and away arrays
     i=0
-    divAll=supuMrembo.findAll("div",class_="c-events__item c-events__item_col c-events_withId")
+    divAll=supuMrembo.findAll("div",class_="dashboard-champ-content")
     # in each div find all sub-lists that contain the football data
     for div in divAll:
         match_names=div.findAll("span",class_="c-events__teams")
